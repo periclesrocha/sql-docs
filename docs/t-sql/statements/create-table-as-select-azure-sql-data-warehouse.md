@@ -899,6 +899,10 @@ For details, see [General Remarks](create-table-azure-sql-data-warehouse.md?vers
 
 ## Limitations and restrictions
 
+When using CREATE TABLE AS SELECT (CTAS), the data types of the target table are inferred from the result set of the SELECT statement. If any column in the result set resolves to a data type that is not supported for table storage, the CTAS operation fails.
+This restriction applies to persisted tables (Parquet-backed tables), where only supported data types can be written. Some data types may be valid in query expressions and intermediate results but are not supported for table columns.
+For the list of supported and unsupported data types for tables, see [Data types in Fabric Data Warehouse](../../../fabric/data-warehouse/data-types.md). 
+
 [SET ROWCOUNT (Transact-SQL)](../statements/set-rowcount-transact-sql.md) has no effect on CTAS. To achieve a similar behavior, use [TOP (Transact-SQL)](../queries/top-transact-sql.md?version=fabric&preserve-view=true).  
  
 For details, see [Limitations and Restrictions](create-table-azure-sql-data-warehouse.md?version=fabric&preserve-view=true#LimitationsRestrictions) in `CREATE TABLE`.
